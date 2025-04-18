@@ -79,7 +79,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(4216),
+                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3231),
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             IsActive = true,
@@ -92,7 +92,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(4218),
+                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3233),
                             Email = "jane.smith@example.com",
                             FirstName = "Jane",
                             IsActive = true,
@@ -333,13 +333,13 @@ namespace GMS.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Grad");
+                    b.ToTable("Products");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(3729),
+                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2490),
                             Description = "High-quality whey protein powder for muscle recovery and growth.",
                             IsActive = true,
                             Name = "Whey Protein",
@@ -350,7 +350,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(3731),
+                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2491),
                             Description = "Pure creatine monohydrate to enhance strength and performance.",
                             IsActive = true,
                             Name = "Creatine Monohydrate",

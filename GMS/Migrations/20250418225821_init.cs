@@ -23,7 +23,7 @@ namespace GMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Grad",
+                name: "Products",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -39,7 +39,7 @@ namespace GMS.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Grad", x => x.Id);
+                    table.PrimaryKey("PK_Products", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,12 +106,12 @@ namespace GMS.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Grad",
+                table: "Products",
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "Name", "Price", "SKU", "StockQuantity", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(3729), "High-quality whey protein powder for muscle recovery and growth.", true, "Whey Protein", 49.99m, "WHEY-001", 100, null },
-                    { 2, new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(3731), "Pure creatine monohydrate to enhance strength and performance.", true, "Creatine Monohydrate", 29.99m, "CREA-001", 150, null }
+                    { 1, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2490), "High-quality whey protein powder for muscle recovery and growth.", true, "Whey Protein", 49.99m, "WHEY-001", 100, null },
+                    { 2, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2491), "Pure creatine monohydrate to enhance strength and performance.", true, "Creatine Monohydrate", 29.99m, "CREA-001", 150, null }
                 });
 
             migrationBuilder.InsertData(
@@ -119,8 +119,8 @@ namespace GMS.Migrations
                 columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "IsActive", "LastLoginAt", "LastName", "PasswordHash", "PasswordSalt", "PhoneNumber", "Username" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(4216), "john.doe@example.com", "John", true, null, "Doe", "hashed_password_1", "salt_1", "123-456-7890", "johndoe" },
-                    { 2, new DateTime(2025, 4, 18, 22, 56, 15, 534, DateTimeKind.Utc).AddTicks(4218), "jane.smith@example.com", "Jane", true, null, "Smith", "hashed_password_2", "salt_2", "987-654-3210", "janesmith" }
+                    { 1, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3231), "john.doe@example.com", "John", true, null, "Doe", "hashed_password_1", "salt_1", "123-456-7890", "johndoe" },
+                    { 2, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3233), "jane.smith@example.com", "Jane", true, null, "Smith", "hashed_password_2", "salt_2", "987-654-3210", "janesmith" }
                 });
         }
 
@@ -130,7 +130,7 @@ namespace GMS.Migrations
                 name: "Cities");
 
             migrationBuilder.DropTable(
-                name: "Grad");
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "Users");
