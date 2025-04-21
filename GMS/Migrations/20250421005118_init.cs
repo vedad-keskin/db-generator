@@ -43,6 +43,22 @@ namespace GMS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -62,6 +78,31 @@ namespace GMS.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    DateAssigned = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_UserRoles_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.InsertData(
@@ -110,8 +151,18 @@ namespace GMS.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "Name", "Price", "SKU", "StockQuantity", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2490), "High-quality whey protein powder for muscle recovery and growth.", true, "Whey Protein", 49.99m, "WHEY-001", 100, null },
-                    { 2, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2491), "Pure creatine monohydrate to enhance strength and performance.", true, "Creatine Monohydrate", 29.99m, "CREA-001", 150, null }
+                    { 1, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(4811), "High-quality whey protein powder for muscle recovery and growth.", true, "Whey Protein", 49.99m, "WHEY-001", 100, null },
+                    { 2, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(4812), "Pure creatine monohydrate to enhance strength and performance.", true, "Creatine Monohydrate", 29.99m, "CREA-001", 150, null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5722), "System administrator with full access.", true, "Administrator" },
+                    { 2, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5723), "Regular application user.", true, "User" },
+                    { 3, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5725), "Handles deliveries and transport.", true, "Driver" }
                 });
 
             migrationBuilder.InsertData(
@@ -119,9 +170,29 @@ namespace GMS.Migrations
                 columns: new[] { "Id", "CreatedAt", "Email", "FirstName", "IsActive", "LastLoginAt", "LastName", "PasswordHash", "PasswordSalt", "PhoneNumber", "Username" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3231), "john.doe@example.com", "John", true, null, "Doe", "hashed_password_1", "salt_1", "123-456-7890", "johndoe" },
-                    { 2, new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3233), "jane.smith@example.com", "Jane", true, null, "Smith", "hashed_password_2", "salt_2", "987-654-3210", "janesmith" }
+                    { 1, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5539), "john.doe@example.com", "John", true, null, "Doe", "hashed_password_1", "salt_1", "123-456-7890", "johndoe" },
+                    { 2, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5541), "jane.smith@example.com", "Jane", true, null, "Smith", "hashed_password_2", "salt_2", "987-654-3210", "janesmith" }
                 });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "Id", "DateAssigned", "RoleId", "UserId" },
+                values: new object[] { 1, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5919), 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "UserRoles",
+                columns: new[] { "Id", "DateAssigned", "RoleId", "UserId" },
+                values: new object[] { 2, new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5920), 1, 2 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_RoleId",
+                table: "UserRoles",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserRoles_UserId",
+                table: "UserRoles",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -131,6 +202,12 @@ namespace GMS.Migrations
 
             migrationBuilder.DropTable(
                 name: "Products");
+
+            migrationBuilder.DropTable(
+                name: "UserRoles");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Users");
