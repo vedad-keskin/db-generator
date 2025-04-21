@@ -22,6 +22,61 @@ namespace GMS.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("eCommerce.Services.Database.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5722),
+                            Description = "System administrator with full access.",
+                            IsActive = true,
+                            Name = "Administrator"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5723),
+                            Description = "Regular application user.",
+                            IsActive = true,
+                            Name = "User"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5725),
+                            Description = "Handles deliveries and transport.",
+                            IsActive = true,
+                            Name = "Driver"
+                        });
+                });
+
             modelBuilder.Entity("eCommerce.Services.Database.User", b =>
                 {
                     b.Property<int>("Id")
@@ -79,7 +134,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3231),
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5539),
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             IsActive = true,
@@ -92,7 +147,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(3233),
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5541),
                             Email = "jane.smith@example.com",
                             FirstName = "Jane",
                             IsActive = true,
@@ -101,6 +156,48 @@ namespace GMS.Migrations
                             PasswordSalt = "salt_2",
                             PhoneNumber = "987-654-3210",
                             Username = "janesmith"
+                        });
+                });
+
+            modelBuilder.Entity("eCommerce.Services.Database.UserRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("DateAssigned")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateAssigned = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5919),
+                            RoleId = 1,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateAssigned = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5920),
+                            RoleId = 1,
+                            UserId = 2
                         });
                 });
 
@@ -339,7 +436,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2490),
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(4811),
                             Description = "High-quality whey protein powder for muscle recovery and growth.",
                             IsActive = true,
                             Name = "Whey Protein",
@@ -350,7 +447,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 18, 22, 58, 21, 277, DateTimeKind.Utc).AddTicks(2491),
+                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(4812),
                             Description = "Pure creatine monohydrate to enhance strength and performance.",
                             IsActive = true,
                             Name = "Creatine Monohydrate",
@@ -358,6 +455,35 @@ namespace GMS.Migrations
                             SKU = "CREA-001",
                             StockQuantity = 150
                         });
+                });
+
+            modelBuilder.Entity("eCommerce.Services.Database.UserRole", b =>
+                {
+                    b.HasOne("eCommerce.Services.Database.Role", "Role")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("eCommerce.Services.Database.User", "User")
+                        .WithMany("UserRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("eCommerce.Services.Database.Role", b =>
+                {
+                    b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("eCommerce.Services.Database.User", b =>
+                {
+                    b.Navigation("UserRoles");
                 });
 #pragma warning restore 612, 618
         }
