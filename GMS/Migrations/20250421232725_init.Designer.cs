@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GMS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250421005118_init")]
+    [Migration("20250421232725_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,7 +56,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5722),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(742),
                             Description = "System administrator with full access.",
                             IsActive = true,
                             Name = "Administrator"
@@ -64,7 +64,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5723),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(743),
                             Description = "Regular application user.",
                             IsActive = true,
                             Name = "User"
@@ -72,7 +72,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5725),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(745),
                             Description = "Handles deliveries and transport.",
                             IsActive = true,
                             Name = "Driver"
@@ -136,7 +136,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5539),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(416),
                             Email = "john.doe@example.com",
                             FirstName = "John",
                             IsActive = true,
@@ -149,7 +149,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5541),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(418),
                             Email = "jane.smith@example.com",
                             FirstName = "Jane",
                             IsActive = true,
@@ -190,16 +190,111 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            DateAssigned = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5919),
+                            DateAssigned = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(981),
                             RoleId = 1,
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            DateAssigned = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(5920),
+                            DateAssigned = new DateTime(2025, 4, 21, 23, 27, 24, 954, DateTimeKind.Utc).AddTicks(982),
                             RoleId = 1,
                             UserId = 2
+                        });
+                });
+
+            modelBuilder.Entity("GMS.Entities.Models.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Škoda"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "BMW"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Audi"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Mercedes-Benz"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Volkswagen"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Toyota"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Name = "Ford"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Name = "Renault"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Name = "Peugeot"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Name = "Fiat"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Name = "Kia"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Name = "Hyundai"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Name = "Opel"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Name = "Mazda"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Name = "Seat"
                         });
                 });
 
@@ -438,7 +533,7 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(4811),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 953, DateTimeKind.Utc).AddTicks(9784),
                             Description = "High-quality whey protein powder for muscle recovery and growth.",
                             IsActive = true,
                             Name = "Whey Protein",
@@ -449,13 +544,141 @@ namespace GMS.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 4, 21, 0, 51, 18, 19, DateTimeKind.Utc).AddTicks(4812),
+                            CreatedAt = new DateTime(2025, 4, 21, 23, 27, 24, 953, DateTimeKind.Utc).AddTicks(9786),
                             Description = "Pure creatine monohydrate to enhance strength and performance.",
                             IsActive = true,
                             Name = "Creatine Monohydrate",
                             Price = 29.99m,
                             SKU = "CREA-001",
                             StockQuantity = 150
+                        });
+                });
+
+            modelBuilder.Entity("GMS.Entities.Models.Vehicle", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("BrandId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<string>("LicensePlate")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<bool>("PetFriendly")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("SeatsCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StateMachine")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleTierId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("YearOfManufacture")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId");
+
+                    b.HasIndex("UserId");
+
+                    b.HasIndex("VehicleTierId");
+
+                    b.ToTable("Vehicles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BrandId = 2,
+                            Color = "Black",
+                            LicensePlate = "BL-123-XYZ",
+                            Name = "BMW Series 3",
+                            PetFriendly = true,
+                            SeatsCount = 5,
+                            StateMachine = "Accepted",
+                            UserId = 1,
+                            VehicleTierId = 2,
+                            YearOfManufacture = 2018
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BrandId = 1,
+                            Color = "White",
+                            LicensePlate = "SA-456-ABC",
+                            Name = "Škoda Octavia",
+                            PetFriendly = false,
+                            SeatsCount = 5,
+                            StateMachine = "Accepted",
+                            UserId = 2,
+                            VehicleTierId = 1,
+                            YearOfManufacture = 2017
+                        });
+                });
+
+            modelBuilder.Entity("GMS.Entities.Models.VehicleTier", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("VehicleTiers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Basic vehicle tier for everyday rides.",
+                            Name = "Standard"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Comfortable rides with experienced drivers and newer vehicles.",
+                            Name = "Premium"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "High-end vehicles offering top-tier comfort and amenities.",
+                            Name = "Luxury"
                         });
                 });
 
@@ -476,6 +699,33 @@ namespace GMS.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GMS.Entities.Models.Vehicle", b =>
+                {
+                    b.HasOne("GMS.Entities.Models.Brand", "Brand")
+                        .WithMany()
+                        .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("eCommerce.Services.Database.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("GMS.Entities.Models.VehicleTier", "VehicleTier")
+                        .WithMany()
+                        .HasForeignKey("VehicleTierId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("User");
+
+                    b.Navigation("VehicleTier");
                 });
 
             modelBuilder.Entity("eCommerce.Services.Database.Role", b =>
