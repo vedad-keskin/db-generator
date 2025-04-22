@@ -27,6 +27,9 @@ namespace GMS.Data
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             modelBuilder.ApplyConfiguration(new RolesConfiguration());
             modelBuilder.ApplyConfiguration(new UserRolesConfiguration());
+            modelBuilder.ApplyConfiguration(new BrandConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleTierConfiguration());
+            modelBuilder.ApplyConfiguration(new VehicleConfiguration());
 
         }
         public DbSet<City> Cities { get; set; }
@@ -34,6 +37,9 @@ namespace GMS.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<VehicleTier> VehicleTiers { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
 
 
 
